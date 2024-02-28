@@ -1,5 +1,6 @@
-require 'debug'
 require 'capybara/dsl'
+require 'date'
+require 'debug'
 require 'selenium-webdriver'
 
 BASE_URL = 'https://whatson.bfi.org.uk'
@@ -42,7 +43,19 @@ class BFI
 
         next unless year
 
-        events << { title: title, year: year }
+        showtimes = all('.result-box-item').map do |item|
+          date_and_time_string = item.find('.start-date').text
+          next unless date_and_time_string
+
+          date_and_time = DateTime.strptime(date_and_time_string, "%A %d %B %Y %H:%M") rescue nil
+          next unless date_and_time
+
+          venue = item.find('.item-venue').text
+
+          { date: date_and_time, venue: venue }
+        end
+
+        events << { title: title, year: year, showtimes: showtimes }
       end
     end
 
