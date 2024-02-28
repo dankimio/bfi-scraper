@@ -1,9 +1,10 @@
+require 'debug'
 require 'capybara/dsl'
 require 'selenium-webdriver'
 
 BASE_URL = 'https://whatson.bfi.org.uk'
 
-Capybara.default_driver = :selenium
+Capybara.default_driver = :selenium_chrome
 # Capybara.default_driver = :selenium_chrome
 # Capybara.default_driver = :selenium_chrome_headless
 Capybara.app_host = BASE_URL
@@ -17,17 +18,17 @@ class BFI
   def run
     visit('/Online/default.asp')
 
-    # Click on .calendar-day>button with contents "29"
-    find('.calendar-day > button', text: '29').click
+    find('.calendar-container').find_button('29').click
 
-    # events = []
-    # all('.event-list-item').each do |item| # Adjust the selector as per actual HTML structure
-    #   title = item.find('.event-title').text rescue nil # Adjust the selector
-    #   date = item.find('.event-date').text rescue nil # Adjust the selector
-    #   link = item.find('.buy-link')['href'] rescue nil # Adjust the selector
+    events = []
+    all('.item-name').each do |item|
+      title = item.find('a.more-info')['title'] rescue nil
 
-    #   events << { title: title, date: date, link: link }
-    # end
+      result = { title: title }
+      puts result
+
+      events << result
+    end
   end
 end
 
