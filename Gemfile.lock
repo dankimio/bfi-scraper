@@ -16,12 +16,16 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     io-console (0.7.2)
     irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
     matrix (0.4.2)
     mini_mime (1.1.5)
+    multi_xml (0.6.0)
     nokogiri (1.16.2-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.16.2-arm-linux)
@@ -54,6 +58,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     stringio (3.1.0)
+    themoviedb (1.0.1)
+      httparty
     websocket (1.2.10)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -70,6 +76,7 @@ DEPENDENCIES
   capybara
   debug
   selenium-webdriver
+  themoviedb
 
 BUNDLED WITH
    2.5.3
