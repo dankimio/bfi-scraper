@@ -16,6 +16,7 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dotenv (3.1.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -75,6 +76,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   debug
+  dotenv
   selenium-webdriver
   themoviedb
 
