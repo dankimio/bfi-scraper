@@ -12,9 +12,6 @@ Capybara.app_host = BASE_URL
 class BFI
   include Capybara::DSL
 
-  def initialize
-  end
-
   def run
     visit('/Online/default.asp')
 
@@ -48,6 +45,8 @@ class BFI
         puts events << { title: title, year: year }
       end
     end
+
+    events
   end
 end
 
