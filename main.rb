@@ -18,7 +18,7 @@ class BFI
     find('.calendar-container').find_button('29').click
 
     events = []
-    all('.item-name')[0..2].each do |item|
+    all('.item-name')[0..4].each do |item|
       url = item.find('a.more-info')['href']
       # new_window = window_opened_by { item.find('a.more-info').click }
 
@@ -42,7 +42,7 @@ class BFI
 
         next unless year
 
-        puts events << { title: title, year: year }
+        events << { title: title, year: year }
       end
     end
 
@@ -50,4 +50,8 @@ class BFI
   end
 end
 
-BFI.new.run
+data = BFI.new.run
+
+File.open('data.json', 'w') do |f|
+  f.write(data.to_json)
+end
